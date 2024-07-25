@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getMessaging } from "firebase/messaging";
+// import { getAnalytics } from "firebase/analytics";
+import { getMessaging, getToken } from "firebase/messaging";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -20,9 +20,19 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
 // Initialize Firebase Cloud Messaging and get a reference to the service
-const messaging = getMessaging(app);
+export const messaging = getMessaging(app);
 
+export const generateToken = async () => {
+  const permission = await Notification.requestPermission();
+  console.log(permission);
+
+  if (permission === "granted") {
+    const token = await getToken(messaging, {vapidKey: "BGS7Q6hLFH7Tybg1xvDr0L0qRF2SGifjG7OJEV-WswEKqd9gxq2FB3oqp3-8sxdyuoYWV9zUItxTbZQe-NRlIrY"});
+    console.log(token);
+    document.getElementById('token').innerHTML = `<h1>${token}</h1>`;
+  }
+}
 // Add the public key generated from the console here.
-getToken(messaging, {vapidKey: "BNktbg4cLTgXfxS-U-7MBacrOSvgqA3AczaWYhgGRu4XY-gPiRtJNa410BQRc55IUxjX_TZujTgw0P3-9YaKSLc"});
+// getToken(messaging, {vapidKey: "BNktbg4cLTgXfxS-U-7MBacrOSvgqA3AczaWYhgGRu4XY-gPiRtJNa410BQRc55IUxjX_TZujTgw0P3-9YaKSLc"});
