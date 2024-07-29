@@ -36,3 +36,12 @@ export const generateToken = async () => {
 }
 // Add the public key generated from the console here.
 // getToken(messaging, {vapidKey: "BNktbg4cLTgXfxS-U-7MBacrOSvgqA3AczaWYhgGRu4XY-gPiRtJNa410BQRc55IUxjX_TZujTgw0P3-9YaKSLc"});
+
+export const subscribeToTopic = async (topic) => {
+  try {
+    await messaging.subscribeToTopic(topic);
+    console.log(`Subscribed to topic: ${topic}`);
+  } catch (error) {
+    console.error('Error subscribing to topic:', error);
+  }
+};

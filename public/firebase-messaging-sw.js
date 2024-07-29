@@ -27,9 +27,9 @@ messaging.onBackgroundMessage((payload) => {
     payload
   );
   // Customize notification here
-  const notificationTitle = 'testing title';
+  const notificationTitle = payload.notification.title;
   const notificationOptions = {
-    body: "Lorem Ipsum notify body",
+    body: payload.notification.body,
     icon: "https://cdn.icon-icons.com/icons2/2699/PNG/512/firebase_logo_icon_171157.png",
   };
 

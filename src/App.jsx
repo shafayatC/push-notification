@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { generateToken, messaging } from './firebase'
+import { generateToken, messaging, subscribeToTopic } from './firebase'
 import { onMessage } from 'firebase/messaging'
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
 
   useEffect(() => {
     generateToken(); 
+    subscribeToTopic('testing_one');
     onMessage(messaging, (payload)=>{
       
       console.log(payload); 
