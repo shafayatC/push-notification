@@ -11,6 +11,7 @@ import { getMessaging, getToken } from "firebase/messaging";
 const firebaseConfig = {
   apiKey: "AIzaSyCq_mducVUECKcFOOU40fT3-fvEOMzbz3Y",
   authDomain: "test-web-c62dd.firebaseapp.com",
+  
   projectId: "test-web-c62dd",
   storageBucket: "test-web-c62dd.appspot.com",
   messagingSenderId: "892046121251",
@@ -31,7 +32,8 @@ export const generateToken = async () => {
   if (permission === "granted") {
     const token = await getToken(messaging, {vapidKey: "BGS7Q6hLFH7Tybg1xvDr0L0qRF2SGifjG7OJEV-WswEKqd9gxq2FB3oqp3-8sxdyuoYWV9zUItxTbZQe-NRlIrY"});
     console.log(token);
-    document.getElementById('token').innerHTML = `<h1>${token}</h1>`;
+    // document.getElementById('token').innerHTML = `<h1>${token}</h1>`;
+    return token; 
   }
 }
 // Add the public key generated from the console here.

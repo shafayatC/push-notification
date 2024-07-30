@@ -7,24 +7,30 @@ import { onMessage } from 'firebase/messaging'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [getToken, setToken] = useState(null);
 
+  const tokenFunc = async () => {
+    const token = await generateToken();
+    setToken(token);
+  }
   useEffect(() => {
-    generateToken(); 
+    tokenFunc();
     subscribeToTopic('testing_one');
-    onMessage(messaging, (payload)=>{
-      
-      console.log(payload); 
+    onMessage(messaging, (payload) => {
+
+      console.log(payload);
 
     })
   }, [])
   return (
     <>
       <div>
-        {/* <h1 className="text-3xl font-bold underline none">
+        <h1 className="text-3xl font-bold underline none">
           <span className='text-red-800 font-bold'>Push</span> Notification
-        </h1> */}
+        </h1>
+        
         <br></br>
-        <p id="token" className='text-[5px]'></p>
+        <p id="token" className='text-[8px]'>{getToken}</p>
       </div>
     </>
   )
